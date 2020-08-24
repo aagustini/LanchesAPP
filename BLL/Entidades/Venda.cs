@@ -26,7 +26,7 @@ namespace BLL.Entidades
             Status = Status.ABERTA;
         }
 
-        public void inserir(int qtde, Produto prod)
+        public void inserir(int qtde, IProduto prod)
         {
             // regra de negocio... status == aberta!
              ItemVenda item = new ItemVenda()
@@ -54,11 +54,11 @@ namespace BLL.Entidades
 
         public String gerarNota() {
             // requisito: this.Status == Status.FECHADA;
-            String nota = "PSA Lanches " + Data.ToShortDateString()+"\n";
+            String nota = "PSA Lanches " + Data.ToShortDateString()+ "\t NF.: " + NroVenda+"\n";
 
             foreach (ItemVenda item in itens)
             {
-                nota += String.Format("{0,-15} {1,7:#.00} {2,3} {3,7:#.00}\n",
+                nota += String.Format("{0,-20} {1,7:#.00} {2,3} {3,7:#.00}\n",
                     item.Produto.Nome,  
                     item.Produto.Preco, 
                     item.Quantidade,
